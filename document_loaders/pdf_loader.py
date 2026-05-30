@@ -12,7 +12,6 @@ def pdf_validation_and_text_extraction(file_path):
 
     validation_result = {
         "valid" : False,
-        "message" : "",
         "exists" : True,
         "corrupted" : False,
         "encrypted" : False,
@@ -25,7 +24,6 @@ def pdf_validation_and_text_extraction(file_path):
     if not os.path.exists(file_path):
         
         validation_result["exists"] = False
-        validation_result["message"] = "PDF don't exists."
 
         return validation_result
     
@@ -37,7 +35,6 @@ def pdf_validation_and_text_extraction(file_path):
     except Exception as e:
 
         validation_result["corrupted"] = True
-        validation_result["message"] = f"PDF is corrupted: {e}."
 
         return validation_result
     
@@ -45,7 +42,6 @@ def pdf_validation_and_text_extraction(file_path):
     if  doc.needs_pass:
         
         validation_result["encrypted"] = True
-        validation_result["message"] = "PDF is encrypted."
     
         doc.close()
 
@@ -57,7 +53,6 @@ def pdf_validation_and_text_extraction(file_path):
     if page_count == 0:
 
         validation_result["empty"] = True
-        validation_result["message"] = "PDF has no page."
 
         doc.close()
 
@@ -110,14 +105,12 @@ def pdf_validation_and_text_extraction(file_path):
     if not has_any_text:
 
         validation_result["empty"] = True
-        validation_result["message"] = "PDF has no text."
 
         doc.close()
 
         return validation_result
     
     validation_result["valid"] = True
-    validation_result["message"] = "PDF validated successfully."
 
     doc.close()
 

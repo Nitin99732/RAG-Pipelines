@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "langchain-community>=0.4.2",
     "numpy>=2.4.6",
     "paddleocr==3.4.0",
     "paddlepaddle==3.2.0",
