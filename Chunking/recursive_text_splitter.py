@@ -1,4 +1,6 @@
 from  langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader 
+from langchain_core.documents import Document
 
 def get_text_splitter() -> RecursiveCharacterTextSplitter:
 
@@ -36,7 +38,7 @@ def chunking_with_split_text(text : str) -> list[str]:
 
 
     
-def chunking_with_create_document(text):
+def chunking_with_create_document(text : str) -> list[Document]:
 
     """
     Split text into Langchain document objects 
@@ -57,3 +59,39 @@ def chunking_with_create_document(text):
 
     return chunks
 
+
+
+def chunking_with_split_documents(documents : list[Document]) -> list[Document]:
+
+    """
+    Split LangChain Document objects into smaller 
+    Document chunks while preserving metadata.
+
+    Input : list[Document]
+
+    Output : list[Document]
+    """
+
+    splitter = get_text_splitter()
+
+    chunks = splitter.split_documents(documents)
+
+    return chunks
+
+
+def chunking_with_transform_documents(documents : list[Document]) -> list[Document]:
+
+    """
+    Transform LangChain Document objects into smaller 
+    Document chunks while preserving metadata.
+
+    Input : list[Document]
+
+    Output : list[Document]
+    """
+
+    splitter = get_text_splitter()
+
+    chunks = splitter.transform_documents(documents)
+
+    return chunks
