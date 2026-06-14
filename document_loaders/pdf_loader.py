@@ -10,12 +10,26 @@ file_path = os.path.join("document_loaders", "1.pdf")
 # PDF Validation and Text Extraction
 def pdf_validation_and_text_extraction(file_path):
 
+    """
+    Validate a PDF file and extract its text and metadata.
+
+    Checks:
+    - File existence
+    - Corruption
+    - Encryption
+    - Empty PDF
+
+    Returns:
+        dict: Validation status, page metadata, and extracted text information.
+    """
+
     validation_result = {
         "valid" : False,
         "exists" : True,
         "corrupted" : False,
         "encrypted" : False,
         "empty" : False,
+        "full_text" : "",
         "page_count" : 0,
         "page_metadata" : []
     }
@@ -87,10 +101,8 @@ def pdf_validation_and_text_extraction(file_path):
 
             page_text = page.get_text().strip()
 
-        # Check if any text exists in the document
-        if page_text.strip():
-
-            has_any_text = True
+        
+        full_text += page_text
         
 
         validation_result["page_metadata"].append({
@@ -102,7 +114,7 @@ def pdf_validation_and_text_extraction(file_path):
         
 
     # Empty Pdf Check
-    if not has_any_text:
+    if not full_text:
 
         validation_result["empty"] = True
 

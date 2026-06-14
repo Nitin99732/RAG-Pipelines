@@ -8,6 +8,18 @@ file_path = os.path.join("document_loaders", "2.txt")
 # Txt file validation and text extraction
 def txt_validation_and_text_extraction(file_path):
 
+    """
+    Validates a TXT file and extracts its text and metadata.
+
+    Checks:
+    - File existence
+    - UTF-8 support
+    - Empty text file
+
+    Returns:
+        dict: Validation status, extracted text and metadata.
+    """
+
     validation_result = {
         "valid" : False,
         "exists" : True,
