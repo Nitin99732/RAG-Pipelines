@@ -105,3 +105,5 @@ def hierarhical_chunking(text : str) -> tuple[list[Document], list[Document]]:
     childern = create_child_chunks(parents)
 
     return parents, childern
+
+
