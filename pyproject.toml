@@ -18,4 +18,5 @@ dependencies = [
     "pillow>=12.2.0",
     "pymupdf>=1.27.2.3",
     "tiktoken>=0.13.0",
+    "unstructured[all-docs]>=0.23.1",
 ]
